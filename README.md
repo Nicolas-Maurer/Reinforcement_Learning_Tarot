@@ -17,7 +17,7 @@ Three cards, the 1 of trump (called the petit), the 21 of trump and the excuse a
 Not only are the bouts worth points, but having them in your tricks also reduces the total number of points you need to win.
 
 ## Values of the cards
-In each hand one player, the taker (le preneur) plays alone against the other three in partnership. The taker's objective is to accumulate enough card points to win the hand by taking tricks.
+In each hand one player, the taker plays alone against the other two in partnership. The taker's objective is to accumulate enough card points to win the hand by taking tricks.
 
 For every card in every trick taken, you get the following card points:
 - Bouts (21, 1, excuse):	4.5 points each
@@ -32,3 +32,15 @@ The number of points the taker needs to win depends on the number of bouts the t
 - With 2 bouts the taker needs at least 41 card points to win.
 - With 1 bout the taker needs at least 51 card points to win.
  -With 0 bouts the taker needs at least 56 card points to win.
+
+## The plays of the cards / The rules 
+
+Each player is obliged to follow the requested suit, if he can't then he has to play trump, if he can't either, then he plays another card. 
+
+Moreover, when you have to play a trump, you must if possible, play a higher trump than the highest trump played so far for this trick. If you can't, you must still play a trump. 
+Each trick is won by the highest trump, if the trick does not contain a trump then it is won by the highest card of the requested suit. 
+The player who wins the trick starts the next one.
+
+
+# Sources : 
+- https://www.pagat.com/tarot/frtarot.html#introduction
