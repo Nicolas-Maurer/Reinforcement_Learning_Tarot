@@ -36,11 +36,21 @@ The number of points the taker needs to win depends on the number of bouts the t
 ## The plays of the cards / The rules 
 
 Each player is obliged to follow the requested suit, if he can't then he has to play trump, if he can't either, then he plays another card. 
+Moreover, when you have to play a trump, you must if possible, play a higher trump than the highest trump played so far for this trick. If you can't, you must still play a trump.  
 
-Moreover, when you have to play a trump, you must if possible, play a higher trump than the highest trump played so far for this trick. If you can't, you must still play a trump. 
 Each trick is won by the highest trump, if the trick does not contain a trump then it is won by the highest card of the requested suit. 
 The player who wins the trick starts the next one.
 
+The only exception is the excuse, it can be played any time, but it never wins the trick 
+
+More rules about the Tarot: https://www.pagat.com/tarot/frtarot.html#introduction
+
+
+# MCTS - Paranoid 
+Search Policies for Multi-Player MCTS
+
+In the tarot game, instead of maximizing their own win rate, not-taker will try to minimize the win rate of the taker. This is the main hypothesis of the paranoid search policy.
+
 
 # Sources : 
-- https://www.pagat.com/tarot/frtarot.html#introduction
+- https://project.dke.maastrichtuniversity.nl/games/files/phd/Nijssen_thesis.pdf
