@@ -52,11 +52,24 @@ More rules about the Tarot: https://www.pagat.com/tarot/frtarot.html#introductio
 # MCTS 
 
 To predict the best card to play we will use the MCTS method, where each node will represent a potential card. The main difficulty lies in the fact that the Tarot is an imperfect information game, each player only know it's own cards, "the dog" and the history of played card (if they can remember it).
+So to simulate this, we will give 24 random cards to the "first player" and simulate the potential outcome of each cards. 
 
+For example, the first 3 node are choosen like this : 
+- First node : Choose a random card from the 24 in the first player's hand.
+- Second node : Choose a random card from the (78(#card in the deck) - 24(first player's hand) - 6(the dog)) = 48 potential cards.
+- Third node : Choose a random card from the (78 - 24 - 6 - 1(simulated card from player 2) = 47 potential cards. 
 
+But to define the potential cards, i.e. the legal cards that can be played, we need to follow some metrics that can be taken from the rules.
+For example, if the first player plays an ace of hearts and the second respond by a king of spades, it means that the second doesn't have hearts nor trumps. Which reduces by a lot it's potential cards.
+And if each card/node is randomly selected from the legal cards, most branches will result in an impossible game, where a player will not have enough playable cards to finish the game. 
 
+For the 3N node if player 1 starts : (3N because each trick is composed of 3 cards, N is the nth trick)
 
-# Paranoid 
+- 3N node: Choose a random card from the 24 - 3N
+- 3N+1 node:
+- 3N+2 node:
+
+# Search Policies : Paranoid 
 In the tarot game, instead of maximizing their own win rate, not-taker will try to minimize the win rate of the taker. This is the main hypothesis of the paranoid search policy.
 
 Source: https://project.dke.maastrichtuniversity.nl/games/files/phd/Nijssen_thesis.pdf
@@ -65,13 +78,13 @@ Source: https://project.dke.maastrichtuniversity.nl/games/files/phd/Nijssen_thes
 
 ![image](https://latex.codecogs.com/svg.latex?%5Cdpi%7B120%7D%20%5Clarge%20v_i%20%3D%20%281%20-%20%5Chat%7Bx_i%7D%29%20&plus;%20C%20%5Ctext%5Cspace%20%5Csqrt%20%5Cfrac%7Bln%28n_p%29%7D%7Bn_i%7D)
 
-Similar to the UCT formula (Formula 2.8), x¯i denotes the win rate of node i. ni
+Similar to the UCT formula (Formula 2.8), x̂ᵢ denotes the win rate of node i. ni
 and np denote the total number of times child i and its parent p have been visited,
 respectively. C is a constant, which balances exploration and exploitation.
 
-The major difference with the standard UCT formula is that, at the MIN nodes, x¯i
+The major difference with the standard UCT formula is that, at the MIN nodes, x̂ᵢ
 does not represent the win rate at child i of the current player, but of the root player.
-Essentially, (1−x¯i) indicates the win rate of the coalition of the opponents. Analogous
+Essentially, (1−x̂ᵢ) indicates the win rate of the coalition of the opponents. Analogous
 to paranoid in the minimax framework, the opponents do not consider their own win
 rate."
 
