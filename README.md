@@ -16,6 +16,9 @@ Finally, there is a special card called the excuse, or the fool, marked with a s
 Three cards, the 1 of trump (called the petit), the 21 of trump and the excuse are particularly important in the game and are known as bouts ("ends") or sometimes in books as oudlers.
 Not only are the bouts worth points, but having them in your tricks also reduces the total number of points you need to win.
 
+During the deal, six cards are dealt face down to the centre of the table to form the talon or "the dog".
+This means that in a 3-player game of tarot, each player has 24 cards in his hand when the deal is over.
+ 
 ## Values of the cards
 In each hand one player, the taker plays alone against the other two in partnership. The taker's objective is to accumulate enough card points to win the hand by taking tricks.
 
@@ -46,11 +49,29 @@ The only exception is the excuse, it can be played any time, but it never wins t
 More rules about the Tarot: https://www.pagat.com/tarot/frtarot.html#introduction
 
 
-# MCTS - Paranoid 
-Search Policies for Multi-Player MCTS
+# MCTS 
 
+To predict the best card to play we will use the MCTS method, where each node will represent a potential card. The main difficulty lies in the fact that the Tarot is an imperfect information game, each player only know it's own cards, "the dog" and the history of played card (if they can remember it).
+
+
+
+
+# Paranoid 
 In the tarot game, instead of maximizing their own win rate, not-taker will try to minimize the win rate of the taker. This is the main hypothesis of the paranoid search policy.
 
+Source: https://project.dke.maastrichtuniversity.nl/games/files/phd/Nijssen_thesis.pdf
 
-# Sources : 
-- https://project.dke.maastrichtuniversity.nl/games/files/phd/Nijssen_thesis.pdf
+"The child i with the highest value vᵢ is selected as follows :
+
+![image](https://latex.codecogs.com/svg.latex?%5Cdpi%7B120%7D%20%5Clarge%20v_i%20%3D%20%281%20-%20%5Chat%7Bx_i%7D%29%20&plus;%20C%20%5Ctext%5Cspace%20%5Csqrt%20%5Cfrac%7Bln%28n_p%29%7D%7Bn_i%7D)
+
+Similar to the UCT formula (Formula 2.8), x¯i denotes the win rate of node i. ni
+and np denote the total number of times child i and its parent p have been visited,
+respectively. C is a constant, which balances exploration and exploitation.
+
+The major difference with the standard UCT formula is that, at the MIN nodes, x¯i
+does not represent the win rate at child i of the current player, but of the root player.
+Essentially, (1−x¯i) indicates the win rate of the coalition of the opponents. Analogous
+to paranoid in the minimax framework, the opponents do not consider their own win
+rate."
+
