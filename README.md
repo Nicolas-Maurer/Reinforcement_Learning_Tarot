@@ -55,19 +55,23 @@ To predict the best card to play we will use the MCTS method, where each node wi
 So to simulate this, we will give 24 random cards to the "first player" and simulate the potential outcome of each cards. 
 
 For example, the first 3 node are choosen like this : 
-- First node : Choose a random card from the 24 in the first player's hand.
-- Second node : Choose a random card from the (78(#card in the deck) - 24(first player's hand) - 6(the dog)) = 48 potential cards.
-- Third node : Choose a random card from the (78 - 24 - 6 - 1(simulated card from player 2) = 47 potential cards. 
+- First node : Player 1 chooses a random card from the 24 in the first player's hand.
+- Second node : Player 2 chooses a random card from the (78(#card in the deck) - 24(first player's hand) - 6(the dog)) = 48 potential cards.
+- Third node : Player 3 chooses a random card from the (78 - 24 - 6 - 1(simulated card from player 2) = 47 potential cards. 
 
 But to define the potential cards, i.e. the legal cards that can be played, we need to follow some metrics that can be taken from the rules.
 For example, if the first player plays an ace of hearts and the second respond by a king of spades, it means that the second doesn't have hearts nor trumps. Which reduces by a lot it's potential cards.
-And if each card/node is randomly selected from the legal cards, most branches will result in an impossible game, where a player will not have enough playable cards to finish the game. 
 
 For the 3N node if player 1 starts : (3N because each trick is composed of 3 cards, N is the nth trick)
 
-- 3N node: Choose a random card from the 24 - 3N
-- 3N+1 node:
-- 3N+2 node:
+- 3N node: Player 1 chooses a card at random from the (24 - 3N) cards remaining in his hand.
+- 3N+1 node: Player 2 finds his legal moves among the (78 - 24 - 6 - 3N) cards that have not yet been played and plays a card at random among them.
+- 3N+2 node: Player 3 finds his legal moves among the (78 - 24 - 6 - 3N - 1) cards that have not yet been played and plays a card at random among them.
+
+But if each card/node is randomly selected from the legal cards, most branches will result in an impossible game, where a player will not have enough playable cards to finish the game. 
+
+-> Future research, how to choose playable cards better than random ? 
+
 
 # Search Policies : Paranoid 
 In the tarot game, instead of maximizing their own win rate, not-taker will try to minimize the win rate of the taker. This is the main hypothesis of the paranoid search policy.
